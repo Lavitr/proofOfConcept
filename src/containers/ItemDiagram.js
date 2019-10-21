@@ -174,8 +174,10 @@ class ItemDiagram extends React.Component {
             const x = event.clientX - canvas.offsetLeft;
             const y = event.clientY - canvas.offsetTop;
             if (x >= 430 && x <= 580 && y >= 165 && y <= 190) {
-                console.log(link);
-                window.open(link);
+                window.open (`http://${link}`, "mywindow","status=1,toolbar=1");
+            }
+            if (x >= 330 && x <= 480 && y >= 265 && y <= 290) {
+                window.open (`http://${link}`, "mywindow","status=1,toolbar=1");
             }
         });
     }
