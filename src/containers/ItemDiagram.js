@@ -174,10 +174,10 @@ class ItemDiagram extends React.Component {
             const x = event.clientX - canvas.offsetLeft;
             const y = event.clientY - canvas.offsetTop;
             if (x >= 430 && x <= 580 && y >= 165 && y <= 190) {
-                window.open (`http://${link}`, "mywindow","status=1,toolbar=1");
+                window.open (`http://${link}`, '_blank');
             }
             if (x >= 330 && x <= 480 && y >= 265 && y <= 290) {
-                window.open (`http://${link}`, "mywindow","status=1,toolbar=1");
+                window.open (`http://${link}`, '_blank');
             }
         });
     }
@@ -185,9 +185,6 @@ class ItemDiagram extends React.Component {
     render() {
         return (
             <div>
-                {/* <CanvasJSChart options={options} */}
-                {/* /* onRef = {ref => this.chart = ref} */}
-                {/* /> */}
                 <button style={styleButton} onClick={() => { this.props.backToUsers(); }} >BACK</button>
                 <div>{this.selectedUserData}</div>
                 <canvas id="Canvas" ref="canvas" width={1000} height={700} style={{ border: '2px solid orange', margin: '0 auto', display: 'block' }} />
