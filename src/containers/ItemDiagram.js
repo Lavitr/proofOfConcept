@@ -13,6 +13,17 @@ const styleButton = {
 }
 
 class ItemDiagram extends React.Component {
+    constructor(props){
+        super(props);
+        this.selectedUserData= null;
+        data.forEach(item => {
+            if (this.props.selectedItem === item.name) {
+                this.selectedUserData = item.data.a
+            }
+        })
+
+    }
+
     componentDidMount() {
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d");
@@ -24,8 +35,6 @@ class ItemDiagram extends React.Component {
         ctx.fillRect(500, 0, 200, 700);
         ctx.fillStyle = "#CCC111";
         ctx.fillRect(700, 0, 200, 700);
-
-      
 
         ctx.fillStyle = "black";
         ctx.font = "30px Arial";
@@ -47,40 +56,40 @@ class ItemDiagram extends React.Component {
         ctx.lineTo(900, 80);  // Draw a line to (150, 100)
         ctx.lineWidth = 4;
         ctx.stroke();
-//circle1
-ctx.lineWidth = 1;
-ctx.beginPath();
-ctx.arc(775, 110, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle2
-ctx.beginPath();
-ctx.arc(820, 195, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle3
-ctx.beginPath();
-ctx.arc(175, 300, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle4
-ctx.beginPath();
-ctx.arc(820, 360, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle5
-ctx.beginPath();
-ctx.arc(575, 430, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle6
-ctx.beginPath();
-ctx.arc(775, 490, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle7
-ctx.beginPath();
-ctx.arc(820, 560, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//circle8
-ctx.beginPath();
-ctx.arc(380, 630, 15, 0, 2 * Math.PI);
-ctx.stroke();
-//////////////////////////Arrows1
+        //circle1
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(775, 110, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle2
+        ctx.beginPath();
+        ctx.arc(820, 195, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle3
+        ctx.beginPath();
+        ctx.arc(175, 300, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle4
+        ctx.beginPath();
+        ctx.arc(820, 360, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle5
+        ctx.beginPath();
+        ctx.arc(575, 430, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle6
+        ctx.beginPath();
+        ctx.arc(775, 490, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle7
+        ctx.beginPath();
+        ctx.arc(820, 560, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //circle8
+        ctx.beginPath();
+        ctx.arc(380, 630, 15, 0, 2 * Math.PI);
+        ctx.stroke();
+        //////////////////////////Arrows1
         ctx.beginPath();       // Start a new path
         ctx.moveTo(790, 110);    // Move the pen to (30, 50)
         ctx.lineTo(880, 110);  // Draw a line to (150, 100)
@@ -93,7 +102,7 @@ ctx.stroke();
         ctx.lineTo(800, 160);  // Draw a line to (150, 100)
         ctx.lineTo(810, 165);  // Draw a line to (150, 100)
         ctx.stroke();
-//////////////////////////Arrows2
+        //////////////////////////Arrows2
         ctx.beginPath();       // Start a new path
         ctx.moveTo(200, 195);    // Move the pen to (30, 50)
         ctx.lineTo(800, 195);  // Draw a line to (150, 100)
@@ -102,10 +111,10 @@ ctx.stroke();
         ctx.beginPath();       // Start a new path
         ctx.moveTo(210, 190);  // Draw a line to (150, 100)
         ctx.lineTo(200, 195);  // Draw a line to (150, 100)
-        ctx.lineTo(210, 200); 
+        ctx.lineTo(210, 200);
         ctx.lineWidth = 2;
         ctx.stroke();
-//////////////////////////Arrows3
+        //////////////////////////Arrows3
         ctx.beginPath();       // Start a new path
         ctx.moveTo(200, 300);    // Move the pen to (30, 50)
         ctx.lineTo(800, 300);  // Draw a line to (150, 100)
@@ -114,7 +123,7 @@ ctx.stroke();
         ctx.beginPath();       // Start a new path
         ctx.moveTo(790, 295);  // Draw a line to (150, 100)
         ctx.lineTo(800, 300);  // Draw a line to (150, 100)
-        ctx.lineTo(790, 305); 
+        ctx.lineTo(790, 305);
         ctx.lineWidth = 2;
         ctx.stroke();
 
@@ -152,30 +161,34 @@ ctx.stroke();
         ctx.fillStyle = "black";
         ctx.font = "12px Arial";
         ctx.fillText("Request contract", 460, 180);
-    
+
         ctx.fillStyle = "white";
         ctx.fillRect(330, 265, 150, 25);
         ctx.fillStyle = "black";
         ctx.font = "12px Arial";
         ctx.fillText("Sign contract", 350, 280);
+
+        // Add event listener for `click` events.
+        const link=this.selectedUserData
+        canvas.addEventListener('click', function (event) {
+            const x = event.clientX - canvas.offsetLeft;
+            const y = event.clientY - canvas.offsetTop;
+            if (x >= 430 && x <= 580 && y >= 165 && y <= 190) {
+                console.log(link);
+                window.open(link);
+            }
+        });
     }
 
     render() {
-        let selectedUserData
-        data.forEach(item => {
-            if (this.props.selectedItem === item.name) {
-                selectedUserData = item.data.a
-            }
-        })
-
         return (
             <div>
                 {/* <CanvasJSChart options={options} */}
                 {/* /* onRef = {ref => this.chart = ref} */}
                 {/* /> */}
                 <button style={styleButton} onClick={() => { this.props.backToUsers(); }} >BACK</button>
-                <div>{selectedUserData}</div>
-                <canvas ref="canvas" width={1000} height={700} style={{border:'2px solid orange', margin: '0 auto', display: 'block' }} />
+                <div>{this.selectedUserData}</div>
+                <canvas id="Canvas" ref="canvas" width={1000} height={700} style={{ border: '2px solid orange', margin: '0 auto', display: 'block' }} />
             </div>
         );
     }
