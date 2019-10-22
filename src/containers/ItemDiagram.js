@@ -12,182 +12,157 @@ const styleButton = {
     backgroundColor: 'orange'
 }
 
-class ItemDiagram extends React.Component {
-    constructor(props){
-        super(props);
-        this.selectedUserData= null;
-        data.forEach(item => {
-            if (this.props.selectedItem === item.name) {
-                this.selectedUserData = item.data.a
-            }
-        })
+const colors = [
+    '#808000',
+    '#5F9EA0',
+    '#A9A9A9',
+    '#9932CC',
+    '#FF1493',
+    '#1E90FF',
+    '#ADFF2F',
+    '#FFE4C4',
+    '#5F9EA0',
+    '#A9A9A9',
+    '#9932CC',
+    '#FF1493',
+    '#1E90FF',
+    '#ADFF2F'
+]
 
+class ItemDiagram extends React.Component {
+    constructor(props) {
+        super(props);
+        this.canvasWidth = document.body.offsetWidth * 4 / 5;
+        this.columnNumber = data.columns.length;
+
+        this.stepsNumber = data.steps.length;
+        this.canvasHeight = this.stepsNumber * 80 + 110 + 50;
+        this.selectedUserData = null;
     }
 
     componentDidMount() {
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#CCC";
-        ctx.fillRect(100, 0, 200, 700);
-        ctx.fillStyle = "#FF0CCC";
-        ctx.fillRect(300, 0, 200, 700);
-        ctx.fillStyle = "#FFCC00";
-        ctx.fillRect(500, 0, 200, 700);
-        ctx.fillStyle = "#CCC111";
-        ctx.fillRect(700, 0, 200, 700);
+        const columnWidth = Number((this.canvasWidth / this.columnNumber).toFixed());
+        const selfPointingArrpow = Number((this.canvasWidth / (5 * this.columnNumber)).toFixed());
+        let columnX = 0;
+        let titleFont = `${25 * 4 / this.columnNumber + 5}px Arial`;
+        for (let i = 0; i < this.columnNumber; i++) {
+            ctx.fillStyle = colors[i];
+            ctx.fillRect(columnX, 0, columnWidth, this.canvasHeight)
+            //dashed lines
+            ctx.beginPath();
+            ctx.setLineDash([15, 15]);
+            ctx.moveTo(columnX + columnWidth / 2, 87);
+            ctx.lineTo(columnX + columnWidth / 2, this.canvasHeight);
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            //Column Title
+            ctx.fillStyle = "black";
 
-        ctx.fillStyle = "black";
-        ctx.font = "30px Arial";
-        ctx.fillText("Law", 150, 50);
-        ctx.fillText("Finance", 330, 50);
-        ctx.fillText("Agency", 530, 50);
-        ctx.fillText("Recruting", 730, 50);
-        ctx.fillText("1", 767, 119);
-        ctx.fillText("2", 810, 204);
-        ctx.fillText("3", 168, 310);
-        ctx.fillText("4", 810, 373);
-        ctx.fillText("5", 567, 440);
-        ctx.fillText("6", 770, 500);
-        ctx.fillText("7", 810, 570);
-        ctx.fillText("8", 371, 639);
+            ctx.font = titleFont;
+            ctx.fillText(data.columns[i].name, columnX + 100 / this.columnNumber, 50);
+            columnX = columnX + columnWidth;
+        }
+        ctx.setLineDash([]);
+        const arrCenterX = [];
+        for (let i = 0; i < this.columnNumber; i++) {
+            arrCenterX.push(Number((columnWidth / 2).toFixed()) + i * columnWidth);
+        }
+        console.log('a', arrCenterX);
+        // steps:[[4,4],[4,1],[1,3],[4,3],[3,4],[4,4],[4,2],[2,3]]
+        let stepY = 110;
+        let circleRadius = this.columnNumber > 5 ? 15 : 25
+        for (let i = 0; i < this.stepsNumber; i++) {
 
-        ctx.beginPath();       // Start a new path
-        ctx.moveTo(100, 80);    // Move the pen to (30, 50)
-        ctx.lineTo(900, 80);  // Draw a line to (150, 100)
-        ctx.lineWidth = 4;
-        ctx.stroke();
-        //circle1
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(775, 110, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle2
-        ctx.beginPath();
-        ctx.arc(820, 195, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle3
-        ctx.beginPath();
-        ctx.arc(175, 300, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle4
-        ctx.beginPath();
-        ctx.arc(820, 360, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle5
-        ctx.beginPath();
-        ctx.arc(575, 430, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle6
-        ctx.beginPath();
-        ctx.arc(775, 490, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle7
-        ctx.beginPath();
-        ctx.arc(820, 560, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //circle8
-        ctx.beginPath();
-        ctx.arc(380, 630, 15, 0, 2 * Math.PI);
-        ctx.stroke();
-        //////////////////////////Arrows1
-        ctx.beginPath();       // Start a new path
-        ctx.moveTo(790, 110);    // Move the pen to (30, 50)
-        ctx.lineTo(880, 110);  // Draw a line to (150, 100)
-        ctx.lineTo(880, 160);  // Draw a line to (150, 100)
-        ctx.lineTo(800, 160);  // Draw a line to (150, 100)
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.beginPath();       // Start a new path
-        ctx.lineTo(810, 155);  // Draw a line to (150, 100)
-        ctx.lineTo(800, 160);  // Draw a line to (150, 100)
-        ctx.lineTo(810, 165);  // Draw a line to (150, 100)
-        ctx.stroke();
-        //////////////////////////Arrows2
-        ctx.beginPath();       // Start a new path
-        ctx.moveTo(200, 195);    // Move the pen to (30, 50)
-        ctx.lineTo(800, 195);  // Draw a line to (150, 100)
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.beginPath();       // Start a new path
-        ctx.moveTo(210, 190);  // Draw a line to (150, 100)
-        ctx.lineTo(200, 195);  // Draw a line to (150, 100)
-        ctx.lineTo(210, 200);
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        //////////////////////////Arrows3
-        ctx.beginPath();       // Start a new path
-        ctx.moveTo(200, 300);    // Move the pen to (30, 50)
-        ctx.lineTo(800, 300);  // Draw a line to (150, 100)
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.beginPath();       // Start a new path
-        ctx.moveTo(790, 295);  // Draw a line to (150, 100)
-        ctx.lineTo(800, 300);  // Draw a line to (150, 100)
-        ctx.lineTo(790, 305);
-        ctx.lineWidth = 2;
-        ctx.stroke();
+            console.log(arrCenterX[data.steps[i][0] - 1]);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(arrCenterX[data.steps[i][0] - 1], stepY, circleRadius, 0, 2 * Math.PI);
+            ctx.stroke();
+            ctx.font = titleFont;
+            ctx.fillText(`${i + 1}`, arrCenterX[data.steps[i][0] - 1] - 5, stepY + 5);
+            let lineStart = data.steps[i][1] > data.steps[i][0] ? circleRadius : -circleRadius;
+            if (data.steps[i][0] !== data.steps[i][1]) {
+                ctx.beginPath();       // Start a new path
+                ctx.moveTo(arrCenterX[data.steps[i][0] - 1] + lineStart, stepY);    // Move the pen to (30, 50)
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY);  // Draw a line to (150, 100)
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                //-------Arrow----------
+                if (data.steps[i][1] > data.steps[i][0]) {
+                    ctx.beginPath();       // Start a new path
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY);  // Draw a line to (150, 100)
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1] - 10, stepY - 5);  // Draw a line to (150, 100)
+                    ctx.stroke();
+                    ctx.beginPath();       // Start a new path
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY);  // Draw a line to (150, 100)
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1] - 10, stepY + 5);  // Draw a line to (150, 100)
+                    ctx.stroke();
+                } else {
+                    ctx.beginPath();       // Start a new path
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY);  // Draw a line to (150, 100)
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1] + 10, stepY - 5);  // Draw a line to (150, 100)
+                    ctx.stroke();
+                    ctx.beginPath();       // Start a new path
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY);  // Draw a line to (150, 100)
+                    ctx.lineTo(arrCenterX[data.steps[i][1] - 1] + 10, stepY + 5);  // Draw a line to (150, 100)
+                    ctx.stroke();
+                }
+                //rectanguls
+                let rectangulStart = (arrCenterX[data.steps[i][0] - 1] + arrCenterX[data.steps[i][1] - 1]) / 2 - 50
+                let rectStartY = stepY - 30;
+                ctx.fillStyle = "white";
+                ctx.fillRect(rectangulStart, rectStartY, 100, 25);
+                ctx.fillStyle = "black";
+                ctx.font = "12px Arial";
+                ctx.fillText(`${data.steps[i][2]}`, rectangulStart +5, rectStartY + 15);
+                /////////
+                // Add event listener for `click` events.
+                canvas.addEventListener('click', function (event) {
+                    const x = event.clientX - canvas.offsetLeft;
+                    const y = event.clientY - canvas.offsetTop;
+                    if (x >= rectangulStart && x <= rectangulStart + 100 && y >= rectStartY && y <= rectStartY + 25) {
+                        window.open(`http://${ data.steps[i][3] }`, '_blank');
+                    }
+                });
+            } else {
+                ctx.lineWidth = 2;
 
-        // Dashed line1
-        ctx.beginPath();
-        ctx.setLineDash([15, 15]);
-        ctx.moveTo(200, 87);
-        ctx.lineTo(200, 700);
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        // Dashed line2
-        ctx.beginPath();
-        ctx.setLineDash([15, 15]);
-        ctx.moveTo(400, 87);
-        ctx.lineTo(400, 700);
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        // Dashed line3
-        ctx.beginPath();
-        ctx.setLineDash([15, 15]);
-        ctx.moveTo(600, 87);
-        ctx.lineTo(600, 700);
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        // Dashed line4
-        ctx.beginPath();
-        ctx.setLineDash([15, 15]);
-        ctx.moveTo(800, 87);
-        ctx.lineTo(800, 700);
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        /////////////////////////////////
-        ctx.fillStyle = "white";
-        ctx.fillRect(430, 165, 150, 25);
-        ctx.fillStyle = "black";
-        ctx.font = "12px Arial";
-        ctx.fillText("Request contract", 460, 180);
-
-        ctx.fillStyle = "white";
-        ctx.fillRect(330, 265, 150, 25);
-        ctx.fillStyle = "black";
-        ctx.font = "12px Arial";
-        ctx.fillText("Sign contract", 350, 280);
-
-        // Add event listener for `click` events.
-        const link=this.selectedUserData
-        canvas.addEventListener('click', function (event) {
-            const x = event.clientX - canvas.offsetLeft;
-            const y = event.clientY - canvas.offsetTop;
-            if (x >= 430 && x <= 580 && y >= 165 && y <= 190) {
-                window.open (`http://${link}`, '_blank');
+                ctx.beginPath();       // Start a new path
+                ctx.moveTo(arrCenterX[data.steps[i][0] - 1] + circleRadius, stepY);
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1] + circleRadius + selfPointingArrpow, stepY);
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1] + circleRadius + selfPointingArrpow, stepY + 40);
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY + 40);
+                ctx.stroke();
+                ctx.beginPath();       // Start a new path
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY + 40);  // Draw a line to (150, 100)
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1] + 10, stepY + 35);  // Draw a line to (150, 100)
+                ctx.stroke();
+                ctx.beginPath();       // Start a new path
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1], stepY + 40);  // Draw a line to (150, 100)
+                ctx.lineTo(arrCenterX[data.steps[i][1] - 1] + 10, stepY + 45);  // Draw a line to (150, 100)
+                ctx.stroke();
             }
-            if (x >= 330 && x <= 480 && y >= 265 && y <= 290) {
-                window.open (`http://${link}`, '_blank');
-            }
-        });
+
+            stepY = stepY + 80;
+        }
+
+        ctx.beginPath();
+        // Start a new path
+        ctx.moveTo(0, 80);    // Move the pen to (30, 50)
+        ctx.lineTo(this.canvasWidth, 80);  // Draw a line to (150, 100)
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
     }
 
     render() {
         return (
             <div>
                 <button style={styleButton} onClick={() => { this.props.backToUsers(); }} >BACK</button>
-                <div>{this.selectedUserData}</div>
-                <canvas id="Canvas" ref="canvas" width={1000} height={700} style={{ border: '2px solid orange', margin: '0 auto', display: 'block' }} />
+                {/* <div>{this.selectedUserData}</div> */}
+                <canvas id="Canvas" ref="canvas" width={this.canvasWidth} height={this.canvasHeight} style={{ border: '2px solid orange', margin: '0 auto', display: 'block' }} />
             </div>
         );
     }

@@ -15,7 +15,7 @@ let List = ({ stateObject, userSelected }) => (
 
   <div >
     {
-      data.map((item) => <button style={styleButton} onClick={() => { userSelected(item.name); }} >{item.name}</button>)
+      data.columns.map((item) => <button style={styleButton} onClick={() => { userSelected(item.name); }} >{item.name}</button>)
     }
   </div>
 
