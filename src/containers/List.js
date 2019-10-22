@@ -14,6 +14,7 @@ const styleButton = {
 let List = ({ stateObject, userSelected, backToMain }) => (
 
   <div >
+     <h1>Screen2</h1>
     <button
       style={{ ...styleButton, ...{ margin: '0 auto', backgroundColor: 'orange', borderRadius: '10px' } }}
       onClick={() => { backToMain(); }}

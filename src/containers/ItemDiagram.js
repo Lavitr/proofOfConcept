@@ -158,6 +158,7 @@ class ItemDiagram extends React.Component {
     render() {
         return (
             <div>
+                 <h1>Screen3</h1>
                 <button style={styleButton} onClick={() => { this.props.backToMain(); }} >To Main Screen</button>
                 {/* <div>{this.selectedUserData}</div> */}
                 <canvas id="Canvas" ref="canvas" width={this.canvasWidth} height={this.canvasHeight} style={{ border: '2px solid orange', margin: '0 auto', display: 'block' }} />

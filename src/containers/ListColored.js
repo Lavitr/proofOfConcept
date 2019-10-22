@@ -15,6 +15,7 @@ const styleButton = {
 let ListColored = ({ stateObject, userSelected, nextScreen }) => (
 
     <div >
+        <h1>Screen1</h1>
         <button
             style={{ ...styleButton, ...{ margin: '0 auto', backgroundColor: 'orange', borderRadius: '10px' } }}
             onClick={() => { nextScreen(); }} >
