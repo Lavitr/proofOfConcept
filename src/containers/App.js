@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 let App = ({ isShownItem }) => (
     <div >
         {
-            !isShownItem ?
+            isShownItem ?
                 <ItemDiagram /> :
                 <List />
         }

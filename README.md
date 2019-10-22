@@ -11,4 +11,4 @@ npm start
 open http://localhost:8080  (should start automatically )
 ```
 
-[Online DEMO](https://master.d18p3wa3dj0xth.amplifyapp.com/)
+[Online DEMO](https://master.d3dqdtvsldcx9x.amplifyapp.com/)
