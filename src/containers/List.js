@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { userSelected } from '../actions'
+import { userSelected, backToMain } from '../actions'
 import data from '../Data'
 
 const styleButton = {
@@ -11,11 +11,17 @@ const styleButton = {
   backgroundColor: 'azure'
 }
 
-let List = ({ stateObject, userSelected }) => (
+let List = ({ stateObject, userSelected, backToMain }) => (
 
   <div >
+    <button
+      style={{ ...styleButton, ...{ margin: '0 auto', backgroundColor: 'orange', borderRadius: '10px' } }}
+      onClick={() => { backToMain(); }}
+    >
+      To Main Screen
+    </button>
     {
-      data.columns.map((item) => <button style={styleButton} onClick={() => { userSelected(item.name); }} >{item.name}</button>)
+      data.columns.map((item, index) => <button key={index} style={styleButton} onClick={() => { userSelected(item.name); }} >{item.name}</button>)
     }
   </div>
 
@@ -26,7 +32,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  userSelected
+  userSelected,
+  backToMain
 }
 
 List = connect(

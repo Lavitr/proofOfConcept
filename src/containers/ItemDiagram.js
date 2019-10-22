@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import CanvasJSChart from '../canvasjs.react';
 import { connect } from 'react-redux'
-import { backToUsers } from '../actions'
+import { backToMain  } from '../actions'
 import data from '../Data'
 
 const styleButton = {
@@ -12,7 +12,7 @@ const styleButton = {
     backgroundColor: 'orange'
 }
 
-const colors = [
+export const colors = [
     '#808000',
     '#5F9EA0',
     '#A9A9A9',
@@ -69,13 +69,11 @@ class ItemDiagram extends React.Component {
         for (let i = 0; i < this.columnNumber; i++) {
             arrCenterX.push(Number((columnWidth / 2).toFixed()) + i * columnWidth);
         }
-        console.log('a', arrCenterX);
         // steps:[[4,4],[4,1],[1,3],[4,3],[3,4],[4,4],[4,2],[2,3]]
         let stepY = 110;
         let circleRadius = this.columnNumber > 5 ? 15 : 25
         for (let i = 0; i < this.stepsNumber; i++) {
 
-            console.log(arrCenterX[data.steps[i][0] - 1]);
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.arc(arrCenterX[data.steps[i][0] - 1], stepY, circleRadius, 0, 2 * Math.PI);
@@ -116,14 +114,14 @@ class ItemDiagram extends React.Component {
                 ctx.fillRect(rectangulStart, rectStartY, 100, 25);
                 ctx.fillStyle = "black";
                 ctx.font = "12px Arial";
-                ctx.fillText(`${data.steps[i][2]}`, rectangulStart +5, rectStartY + 15);
+                ctx.fillText(`${data.steps[i][2]}`, rectangulStart + 5, rectStartY + 15);
                 /////////
                 // Add event listener for `click` events.
                 canvas.addEventListener('click', function (event) {
                     const x = event.clientX - canvas.offsetLeft;
                     const y = event.clientY - canvas.offsetTop;
                     if (x >= rectangulStart && x <= rectangulStart + 100 && y >= rectStartY && y <= rectStartY + 25) {
-                        window.open(`http://${ data.steps[i][3] }`, '_blank');
+                        window.open(`http://${data.steps[i][3]}`, '_blank');
                     }
                 });
             } else {
@@ -160,7 +158,7 @@ class ItemDiagram extends React.Component {
     render() {
         return (
             <div>
-                <button style={styleButton} onClick={() => { this.props.backToUsers(); }} >BACK</button>
+                <button style={styleButton} onClick={() => { this.props.backToMain(); }} >To Main Screen</button>
                 {/* <div>{this.selectedUserData}</div> */}
                 <canvas id="Canvas" ref="canvas" width={this.canvasWidth} height={this.canvasHeight} style={{ border: '2px solid orange', margin: '0 auto', display: 'block' }} />
             </div>
@@ -173,7 +171,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    backToUsers
+    backToMain
 }
 
 ItemDiagram = connect(
