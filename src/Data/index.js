@@ -1,19 +1,19 @@
 const config = {
     columns: [
-        { id: 1, name: 'Law', link: 'www.lenta.ru' },
-        { id: 2, name: 'Finance', link: 'www.tut.by' },
-        { id: 3, name: 'Agency', link: 'www.onliner.by' },
-        { id: 4, name: 'Recruting', link: 'www.medium.com' },
+        { id: 1, name: 'Law' },
+        { id: 2, name: 'Finance'},
+        { id: 3, name: 'Agency' },
+        { id: 4, name: 'Recruting' },
 
-        { id: 1, name: 'Law', link: 'www.lenta.ru' },
-        { id: 2, name: 'Finance', link: 'www.tut.by' },
-        { id: 3, name: 'Agency', link: 'www.onliner.by' },
-        { id: 4, name: 'Recruting', link: 'www.medium.com' },
+        { id: 1, name: 'Law' },
+        { id: 2, name: 'Finance' },
+        { id: 3, name: 'Agency' },
+        { id: 4, name: 'Recruting' },
 
-        // { id:1, name: 'Law',  link: 'www.lenta.ru' },
-        // { id:2, name: 'Finance', link: 'www.tut.by'},
-        // { id:3, name: 'Agency', link: 'www.onliner.by' },
-        // { id:4, name: 'Recruting', link: 'www.medium.com' },
+        { id:1, name: 'Law' },
+        { id:2, name: 'Finance'},
+        { id:3, name: 'Agency' },
+        { id:4, name: 'Recruting' },
 
     ],
     steps: [
