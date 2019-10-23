@@ -12,25 +12,32 @@ const styleButton = {
     backgroundColor: 'azure'
 }
 
-let ListColored = ({ stateObject, userSelected, nextScreen }) => (
+const styleScreenButton = {
+    margin: '0 auto',
+    backgroundColor: 'orange',
+    borderRadius: '10px'
+}
 
+let ListColored = ({ stateObject, userSelected, nextScreen }) => (
     <div >
         <h1>Screen1</h1>
         <button
-            style={{ ...styleButton, ...{ margin: '0 auto', backgroundColor: 'orange', borderRadius: '10px' } }}
-            onClick={() => { nextScreen(); }} >
+            style={{ ...styleButton, ...styleScreenButton }}
+            onClick={() => { nextScreen(); }}
+        >
             NEXT SCREEN 2
-            </button>
+        </button>
         {
             data.columns.map((item, index) => (
                 <div key={index}>
-                    <div style={{ float:'left', width: '50px', height: '40px', backgroundColor: colors[index] }}></div>
-                    <button style={styleButton} onClick={() => { userSelected(item.name); }}>{item.name}</button>
+                    <div style={{ float: 'left', width: '50px', height: '40px', backgroundColor: colors[index] }}></div>
+                    <button style={styleButton} onClick={() => { userSelected(item.name); }}>
+                        {item.name}
+                    </button>
                 </div>
             ))
         }
     </div>
-
 )
 
 const mapStateToProps = (state) => ({

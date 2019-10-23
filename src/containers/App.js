@@ -1,12 +1,11 @@
 import React from 'react'
-import List from './List'
+import { connect } from 'react-redux'
 import ListColored from './ListColored'
 import ItemDiagram from './ItemDiagram'
-import { connect } from 'react-redux'
+import List from './List'
 
 let App = ({ screen }) => {
-
-    let content
+    let content;
     switch (screen) {
         case 'LIST':
             content = <List />
@@ -14,11 +13,9 @@ let App = ({ screen }) => {
         case 'DIAGRAM':
             content = <ItemDiagram />
             break;
-
         default:
             content = <ListColored />
     }
-
     return (
         <div >
             {content}

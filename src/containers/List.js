@@ -11,27 +11,35 @@ const styleButton = {
   backgroundColor: 'azure'
 }
 
-let List = ({ stateObject, userSelected, backToMain }) => (
+const styleScreenButton = {
+  margin: '0 auto',
+  backgroundColor: 'orange',
+  borderRadius: '10px'
+}
 
+let List = ({ stateObject, userSelected, backToMain }) => (
   <div >
-     <h1>Screen2</h1>
+    <h1>Screen2</h1>
     <button
-      style={{ ...styleButton, ...{ margin: '0 auto', backgroundColor: 'orange', borderRadius: '10px' } }}
+      style={{ ...styleButton, ...styleScreenButton }}
       onClick={() => { backToMain(); }}
     >
       To Main Screen
     </button>
     {
-      data.columns.map((item, index) => <button key={index} style={styleButton} onClick={() => { userSelected(item.name); }} >{item.name}</button>)
+      data.columns.map(
+        (item, index) => (
+          <button key={index} style={styleButton} onClick={() => { userSelected(item.name) }} >
+            {item.name}
+          </button>)
+      )
     }
   </div>
-
 )
 
 const mapStateToProps = (state) => ({
   stateObject: state
 })
-
 const mapDispatchToProps = {
   userSelected,
   backToMain
