@@ -22,7 +22,10 @@ module.exports = {
                 ]
               }
         ]
-    }
+    },
+    externals: {
+      config:  "config", 
+  }
 };
 
 

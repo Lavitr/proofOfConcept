@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { userSelected, toScreenTwo } from '../actions'
-import data from '../Data'
+import { userSelected, toScreenTwo, newData } from '../actions'
+// import data from '../../data'
 import { colors } from './ItemDiagram'
+import data from 'config'
 
 const styleButton = {
     display: 'block',
@@ -22,7 +23,7 @@ let ListColored = ({ stateObject, userSelected, toScreenTwo }) => (
     <div >
         <h1>Screen1</h1>
         {
-            data.columns.map((item, index) => (
+            window.config.columns.map((item, index) => (
                 <div key={index}>
                     <div style={{ float: 'left', width: '50px', height: '40px', backgroundColor: colors[index] }}></div>
                     <button style={styleButton} onClick={toScreenTwo}>

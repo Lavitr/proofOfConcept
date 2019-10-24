@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { backToMain, toScreenTwo } from '../actions'
-import data from '../Data'
+// import data from '../../data'
+import data from 'config'
 
 const styleButton = {
     display: 'block',
@@ -145,7 +146,7 @@ class ItemDiagram extends React.Component {
         // Add event listener for `click` events.
         canvas.addEventListener('click', function (event) {
             const x = event.clientX - canvas.offsetLeft;
-            const y = event.clientY - canvas.offsetTop+window.pageYOffset;
+            const y = event.clientY - canvas.offsetTop + window.pageYOffset;
             if (x >= rectangulStartX && x <= rectangulStartX + 100 && y >= rectangulStartY && y <= rectangulStartY + 25) {
                 window.open(`http://${data.steps[i][3]}`, '_blank');
             }
@@ -176,8 +177,8 @@ class ItemDiagram extends React.Component {
         return (
             <div>
                 <h1>Screen3</h1>
-                <button style={styleButton} onClick={ this.props.backToMain } >To Main Screen <b>1</b></button>
-                <button style={styleButton} onClick={ this.props.toScreenTwo} >To Screen <b>2</b></button>
+                <button style={styleButton} onClick={this.props.backToMain} >To Main Screen <b>1</b></button>
+                <button style={styleButton} onClick={this.props.toScreenTwo} >To Screen <b>2</b></button>
                 <canvas
                     ref="canvas"
                     width={this.canvasWidth}

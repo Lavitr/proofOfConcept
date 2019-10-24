@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { userSelected, backToMain } from '../actions'
-import data from '../Data'
+// import data from '../../data'
+import data from 'config'
 
 const styleButton = {
   display: 'block',

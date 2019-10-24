@@ -1,4 +1,4 @@
-const config = {
+var config = {
     columns: [
         { id: 1, name: 'Law' },
         { id: 2, name: 'Finance'},
@@ -31,4 +31,3 @@ const config = {
     [1,7,'Request contract','www.medium.com'],
 ]
 }
-export default config;
