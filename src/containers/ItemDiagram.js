@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { backToMain } from '../actions'
+import { backToMain, toScreenTwo } from '../actions'
 import data from '../Data'
 
 const styleButton = {
     display: 'block',
+    margin: '0 auto',
     marginBottom: '30px',
     height: '40px',
     width: '200px',
@@ -175,7 +176,8 @@ class ItemDiagram extends React.Component {
         return (
             <div>
                 <h1>Screen3</h1>
-                <button style={styleButton} onClick={() => { this.props.backToMain(); }} >To Main Screen</button>
+                <button style={styleButton} onClick={ this.props.backToMain } >To Main Screen <b>1</b></button>
+                <button style={styleButton} onClick={ this.props.toScreenTwo} >To Screen <b>2</b></button>
                 <canvas
                     ref="canvas"
                     width={this.canvasWidth}
@@ -192,7 +194,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    backToMain
+    backToMain,
+    toScreenTwo
 }
 
 ItemDiagram = connect(

@@ -5,10 +5,10 @@ export const userSelected = (name) => ({
     name
 })
 
-export const backToMain = (name) => ({
+export const backToMain = () => ({
     type: "BACK_TO_MAIN",
 })
 
-export const nextScreen = (name) => ({
-    type: "NEXT_SCREEN",
+export const toScreenTwo = () => ({
+    type: "TO_SCREEN_TWO",
 })

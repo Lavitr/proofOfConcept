@@ -5,12 +5,11 @@ const reducer = (state = { screen: 'MAIN' }, action) => {
       return { ...state, name: action.name, screen: "DIAGRAM" };
     case 'BACK_TO_MAIN':
       return { ...state, name: action.name, screen: "MAIN" };
-    case 'NEXT_SCREEN':
+    case 'TO_SCREEN_TWO':
       return { ...state, name: action.name, screen: "LIST" };
     default:
       return state;
   }
-
 };
 
 export default reducer;

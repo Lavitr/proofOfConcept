@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { userSelected, nextScreen } from '../actions'
+import { userSelected, toScreenTwo } from '../actions'
 import data from '../Data'
 import { colors } from './ItemDiagram'
 
@@ -18,14 +18,14 @@ const styleScreenButton = {
     borderRadius: '10px'
 }
 
-let ListColored = ({ stateObject, userSelected, nextScreen }) => (
+let ListColored = ({ stateObject, userSelected, toScreenTwo }) => (
     <div >
         <h1>Screen1</h1>
         {
             data.columns.map((item, index) => (
                 <div key={index}>
                     <div style={{ float: 'left', width: '50px', height: '40px', backgroundColor: colors[index] }}></div>
-                    <button style={styleButton} onClick={nextScreen}>
+                    <button style={styleButton} onClick={toScreenTwo}>
                         {item.name}
                     </button>
                 </div>
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     userSelected,
-    nextScreen
+    toScreenTwo
 }
 
 ListColored = connect(
