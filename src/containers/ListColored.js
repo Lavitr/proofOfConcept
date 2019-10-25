@@ -21,7 +21,7 @@ const styleScreenButton = {
 
 let ListColored = ({ stateObject, userSelected, toScreenTwo }) => (
     <div >
-        <h1>Screen1</h1>
+        <h1>Screen 1</h1>
         {
             window.config.columns.map((item, index) => (
                 <div key={index}>

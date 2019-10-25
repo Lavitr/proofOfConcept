@@ -20,7 +20,7 @@ const styleScreenButton = {
 
 let List = ({ stateObject, userSelected, backToMain }) => (
   <div >
-    <h1>Screen2</h1>
+    <h1>Screen 2</h1>
     <button
       style={{ ...styleButton, ...styleScreenButton }}
       onClick={() => { backToMain(); }}

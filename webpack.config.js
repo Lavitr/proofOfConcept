@@ -1,13 +1,19 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: "./src/index.html",  
-        })
-    ],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
     devtool: 'inline-source-map',
+    devServer: {
+      hot: true,
+    },
     module: {
         rules: [
             { test: /\.css$/, use:['style-loader', 'css-loader']},
@@ -27,9 +33,3 @@ module.exports = {
       config:  "config", 
   }
 };
-
-
-
-
-
-
