@@ -30,9 +30,7 @@
     "webpack-dev-server": "3.7.2"
   },
   "dependencies": {
-    "canvas-js": "^4.0.0",
     "react-redux": "^7.1.0",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux": "^4.0.4"
   }
 }
