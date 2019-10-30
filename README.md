@@ -11,4 +11,4 @@ npm start
 open http://localhost:8080  (should start automatically )
 ```
 
-Modify data in data/index.js after reload browser
+Modify data in data/index.js, after reload browser
